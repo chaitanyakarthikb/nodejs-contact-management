@@ -1,23 +1,15 @@
 import express from 'express';
+import { createContact, deleteSingleContactById, getAllContacts, getSingleContactById, updateSingleContactById } from '../controller/contactController.js';
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    res.status(200).send({ message: "This will get all contacts" });
-})
+router.get('/', getAllContacts)
 
-router.post('/', (req, res) => {
-    res.status(201).send({ message: "This will post something to my contact list" });
-})
+router.get('/:id', getSingleContactById);
 
-router.put('/:id', (req, res) => {
-    const id = req.params.id;
-    res.status(200).send({ message: `This will update somethig for ${id}` });
-})
+router.post('/', createContact)
 
-router.delete('/:id', (req, res) => {
-    const id = req.params.id;
-    res.status(200).send({ message: `This will delete a contact with id: ${id}` });
-})
+router.put('/:id', updateSingleContactById)
 
+router.delete('/:id', deleteSingleContactById)
 
 export default router;
